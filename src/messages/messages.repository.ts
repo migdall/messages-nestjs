@@ -22,7 +22,12 @@ export class MessagesRepository {
   async findAll(): Promise<Message[]> {
     const contents = await readFile('messages.json', 'utf-8');
     const messages = JSON.parse(contents);
-    return messages;
+
+    // Return an array of messages
+    // Convert the object of messages into an array of messages
+    const dataArray: Message[] = Object.values(messages);
+
+    return dataArray;
   }
 
   async create(message: string): Promise<Message> {

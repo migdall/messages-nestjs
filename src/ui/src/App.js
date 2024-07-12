@@ -13,7 +13,7 @@ function App() {
       .then((data) => setMessages(data))
       .then(() => setLoading(false))
       .catch((error) => console.error('Error:', error));
-  }, [loading]);
+  }, []);
 
   function sendMessage() {
     fetch('http://localhost:3001/messages', {
@@ -38,14 +38,14 @@ function App() {
       <input
         type="text"
         placeholder="Enter your message"
-        onChange={setNewMessage}
+        onChange={(e) => setNewMessage(e.target.value)}
       />
       <button onClick={sendMessage}>Send</button>
       <div>{messages.length}</div>
       {messages.map((message) => {
         return (
           <div key={message.id}>
-            <p>{message.content}</p>
+            <p>{message.message}</p>
           </div>
         );
       })}
